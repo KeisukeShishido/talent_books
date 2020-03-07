@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/admin/books/add', 'Admin\BooksController@add');
+
+Route::post('/admin/books/create', 'Admin\BooksController@create');
+
