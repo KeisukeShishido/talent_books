@@ -19,7 +19,18 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin/books/add', 'Admin\BooksController@add');
 
-Route::post('/admin/books/create', 'Admin\BooksController@create');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+    
+    Route::get('/books/add', 'Admin\BooksController@add');
+    Route::post('/books/create', 'Admin\BooksController@create');
+    Route::get('/books/index', 'Admin\BooksController@index');
+    
+    Route::get('/talents/add', 'Admin\TalentsController@add');
+    Route::post('/talents/create', 'Admin\TalentsController@create');
+    
+    Route::get('/authors/add', 'Admin\AuthorsController@add');
+    Route::post('/authors/create', 'Admin\AuthorsController@create');
+});
 
