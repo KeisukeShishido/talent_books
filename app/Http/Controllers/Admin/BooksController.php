@@ -8,11 +8,34 @@ use App\Book;
 
 class BooksController extends Controller
 {
+    /**
+     * index
+     * 
+     * GETでアクセスされて一覧のビューを表示する
+     */
+    public function index(Request $request)
+    {
+        $books = Book::all();
+        
+        return view('admin.books.index', ['books' => $books, ]);
+    }
+
+    /**
+     * add
+     * 
+     * GETでブラウザでからアクセスされる
+     * 新規作成用のviewを表示する。
+     */
     public function add()
     {
         return view('admin.books.create');
     }
-    
+
+    /**
+     * create
+     * 
+     * POSTされた内容をDBに新規保存する
+     */
     public function create(Request $request) {
       $this->validate($request, Book::$rules);
 

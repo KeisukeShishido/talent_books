@@ -11,4 +11,14 @@ class Book extends Model
     public static $rules = array(
         'title' => 'required',
     );
+    
+    public function author()
+    {
+        return $this->belongsTo('App\Author');
+    }
+    
+    public function talents()
+    {
+        return $this->belongsToMany('App\Talent');
+    }
 }
