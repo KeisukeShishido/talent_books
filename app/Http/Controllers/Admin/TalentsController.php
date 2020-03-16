@@ -45,4 +45,69 @@ class TalentsController extends Controller
 
       return redirect('admin/talents/add');
     }
+    
+     /**
+     * edit
+     * 
+     * GETでブラウザでからアクセスされる
+     * 編集用のviewを表示する。
+    */
+    public function edit(Request $request)
+    {
+        $talent = Talent::find($request->id);
+        if (empty($talent)) {
+          abort(404);    
+        }
+        return view('admin.talents.edit', ['talent' => $talent]);
+    }
+  
+    /**
+     * update
+     * 
+     * POSTされた内容でDBを更新する
+    */
+    public function update(Request $request)
+    {
+        // Validationをかける
+        $this->validate($request, News::$rules);
+        // News Modelからデータを取得する
+        $news = News::find($request->id);
+        $news_form = $request->all();
+        if (isset($news_form['image'])) {
+            $path = Storage::disk('s3')->putFile('/',$news_form['image'],'public');
+            $news->image_path = Storage::disk('s3')->url($path);
+            unset($news_form['image']);
+            unset($news['image']);
+        } elseif (isset($request->remove)) {
+            $news->image_path = null;
+            unset($news_form['remove']);
+        }
+
+        unset($news_form['_token']);
+  
+        // 該当するデータを上書きして保存する
+        $news->fill($news_form)->save();
+
+        $history = new History;
+        $history->news_id = $news->id;
+        $history->edited_at = Carbon::now();
+        $history->save();
+
+  
+        return redirect('admin/news');
+    }
+    /**
+     * delete
+     * 
+     * 該当のIDのDBのレコードを一件削除する
+    */
+    public function delete(Request $request)
+    {
+        // 該当するNews Modelを取得
+        $news = News::find($request->id);
+        // 削除する
+        $news->delete();
+        return redirect('admin/news/');
+    } 
+    
 }

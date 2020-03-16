@@ -10,6 +10,7 @@ class Book extends Model
     
     public static $rules = array(
         'title' => 'required',
+        'description' => 'required',
     );
     
     public function author()
