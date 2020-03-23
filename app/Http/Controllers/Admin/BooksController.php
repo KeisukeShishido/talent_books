@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Book;
+use App\Author;
 
 class BooksController extends Controller
 {
@@ -28,7 +29,8 @@ class BooksController extends Controller
     */
     public function add()
     {
-        return view('admin.books.create');
+        $authors = Author::all();
+        return view('admin.books.create', ['authors' => $authors]);
     }
 
     /**
@@ -41,13 +43,11 @@ class BooksController extends Controller
 
       $book = new Book;
       $form = $request->all();
-
       // データベースに保存する
       $book->fill($form);
-      $book->author_id=1;
       $book->save();
 
-      return redirect('admin/books/add');
+      return redirect('admin/books');
     }
     
      /**
@@ -58,12 +58,13 @@ class BooksController extends Controller
     */
     public function edit(Request $request)
     {
+        $authors = Author::all();
         // Book Modelからデータを取得する
         $book = Book::find($request->id);
         if (empty($book)) {
           abort(404);    
         }
-        return view('admin.books.edit', ['book' => $book]);
+        return view('admin.books.edit', ['book' => $book, 'authors' => $authors]);
     }
   
     /**

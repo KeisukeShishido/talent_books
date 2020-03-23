@@ -20,6 +20,20 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class="col-md-2" for="author_id">著者</label>
+                        <div class="col-md-10">
+                            <select class="form-control" name="author_id">
+                                @foreach($authors as $author)
+                                    @if($book->author_id == $author->id)
+                                        <option selected value="{{ $author->id}}">{{ $author->name}}</option>
+                                    @else
+                                        <option value="{{ $author->id}}">{{ $author->name}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-md-2" for="description">本文</label>
                         <div class="col-md-10">
                             <textarea class="form-control" name="description" rows="20">{{ $book->description }}</textarea>
