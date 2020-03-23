@@ -1,11 +1,11 @@
 
     <div class="container">
         <div class="row">
-            <h2>本の一覧</h2>
+            <h2>タレントの一覧</h2>
         </div>
         <div class="row">
             <div class="col-md-4">
-                <a href="{{ action('Admin\BooksController@add') }}" role="button" class="btn btn-primary">新規作成</a>
+                <a href="{{ action('Admin\TalentsController@add') }}" role="button" class="btn btn-primary">新規作成</a>
             </div>
         </div>
         <div class="row">
@@ -15,34 +15,26 @@
                         <thead>
                             <tr>
                                 <th width="5%">ID</th>
-                                <th width="10%">タイトル</th>
-                                <th width="10%">著者</th>
-                                <th width="5%">説明文</th>
-                                <th width="50%">タレント</th>
+                                <th width="10%">タレント名</th>
+                                <th width="65%">説明文</th>
                                 <th width="20%">操作</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($books as $book)
+                            @foreach($talents as $talent)
                                 <tr>
-                                    <td>{{ $book->id }}</td>
-                                    <td>{{ \Str::limit($book->title, 100) }}</td>
-                                    <td>{{ \Str::limit($book->author->name, 100) }}</td>
-                                    <td>{{ \Str::limit($book->description, 100) }}</td>
-                                    <td>
-                                        @foreach($book->talents as $talent)
-                                          <p>{{ $talent->name }}</p>
-                                        @endforeach
-                                    </td>
+                                    <td>{{ $talent->id }}</td>
+                                    <td>{{ \Str::limit($talent->name, 100) }}</td>
+                                    <td>{{ \Str::limit($talent->description, 100) }}</td>
                                     <td style="display:table; margin:10px;">
                                         <div style="display:table-cell;">
-                                            <a class="btn btn-primary" style="margin-right:5px;" href="{{ action('Admin\BooksController@edit', ['id' => $book->id]) }}">編集</a>
+                                            <a class="btn btn-primary" style="margin-right:5px;" href="{{ action('Admin\TalentsController@edit', ['id' => $talent->id]) }}">編集</a>
                                         </div>
                                         <div style="display:table-cell;">
-                                            <form action="{{ action('Admin\BooksController@delete') }}" method="post">
+                                            <form action="{{ action('Admin\TalentsController@delete') }}" method="post">
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="_method" value="DELETE">
-                                                <input type="hidden" name="id" value="{{ $book->id }}">
+                                                <input type="hidden" name="id" value="{{ $talent->id }}">
                                                 <input class="btn btn-primary" type="submit" value="削除" >
                                             </form>
                                         </div>
