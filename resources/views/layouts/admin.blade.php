@@ -14,17 +14,15 @@
 
         <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-         {{-- Laravel標準で用意されているJavascriptを読み込みます --}}
-        <script src="{{ secure_asset('js/app.js') }}" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
         <!-- Fonts -->
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
-        {{-- Laravel標準で用意されているCSSを読み込みます --}}
         <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     </head>
     <body>
         <div id="app">
