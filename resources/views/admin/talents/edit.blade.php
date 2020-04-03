@@ -1,4 +1,8 @@
+@extends('layouts.admin')
 
+@section('title', 'タレントの新規作成')
+
+@section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
@@ -26,6 +30,20 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class="col-md-2" for="book_ids[]">本</label>
+                        <div class="col-md-10">
+                            <select multiple class="form-control js-attachSelect2" name="book_ids[]">
+                                @foreach($books as $book)
+                                    @if($book["selected"])
+                                        <option selected value="{{ $book["book"]->id}}">{{ $book["book"]->title}}</option>
+                                    @else
+                                        <option value="{{ $book["book"]->id}}">{{ $book["book"]->title}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-md-2">画像</label>
                         <div class="col-md-10">
                             <input type="file" class="form-control-file" name="image">
@@ -38,3 +56,4 @@
             </div>
         </div>
     </div>
+@endsection

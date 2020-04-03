@@ -12,4 +12,16 @@ class Talent extends Model
         'name' => 'required',
         'description' => 'required',
     );
+    
+    public function books()
+    {
+        return $this->hasManyThrough(
+            'App\Book',
+            'App\BooksTalents',
+            'talent_id',
+            'id',
+            'id',
+            'book_id'
+        );
+    }
 }
