@@ -14,6 +14,7 @@
 
         <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="{{ secure_asset('js/app.js') }}" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
         <!-- Fonts -->
