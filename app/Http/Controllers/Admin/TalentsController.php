@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Talent;
+use App\Book;
+use App\BooksTalents;
+
 use Storage;
 
 class TalentsController extends Controller
@@ -28,7 +31,8 @@ class TalentsController extends Controller
     */
     public function add()
     {
-        return view('admin.talents.create');
+        $books = Book::all();
+        return view('admin.talents.create', ['books' => $books, ]);
     }
 
     /**
@@ -41,7 +45,8 @@ class TalentsController extends Controller
 
       $talent = new Talent;
       $form = $request->all();
-      
+      $book_ids = $form['book_ids'];
+
        // フォームから画像が送信されてきたら、保存して、$news->image_path に画像のパスを保存する
       if (isset($form['image'])) {
         $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
@@ -50,9 +55,17 @@ class TalentsController extends Controller
         $talent->image_path = null;
       }
       unset($form['image']);
+      unset($form['book_ids']);
       // データベースに保存する
       $talent->fill($form);
       $talent->save();
+
+      foreach ($book_ids as $book_id) {
+          $books_talents = new BooksTalents;
+          $books_talents->book_id = $book_id;
+          $books_talents->talent_id = $talent->id;
+          $books_talents->save();
+      }
 
       return redirect('admin/talents/add');
     }
@@ -65,12 +78,25 @@ class TalentsController extends Controller
     */
     public function edit(Request $request)
     {
-        // Talent Modelからデータを取得する
+        $books = Book::all();
         $talent = Talent::find($request->id);
         if (empty($talent)) {
           abort(404);    
         }
-        return view('admin.talents.edit', ['talent' => $talent]);
+        $books_select = [];
+        foreach($books as $book) {
+            $books_select[$book->id]['book'] = $book;
+            foreach($talent->books as $talent_book) {
+                if ($book->id == $talent_book->id) {
+                    $books_select[$book->id]['selected'] = true;
+                    break;
+                } else {
+                    $books_select[$book->id]['selected'] = false;
+                }
+            }
+        }
+        
+        return view('admin.talents.edit', ['talent' => $talent, 'books' => $books_select]);
     }
   
     /**
@@ -85,6 +111,7 @@ class TalentsController extends Controller
         // Talent Modelからデータを取得する
         $talent = Talent::find($request->id);
         $form = $request->all();
+        $book_ids = $form['book_ids'];
 
         // フォームから画像が送信されてきたら、保存して、$news->image_path に画像のパスを保存する
         if (isset($form['image'])) {
@@ -92,9 +119,17 @@ class TalentsController extends Controller
             $talent->image_path = Storage::disk('s3')->url($path);
         }
         unset($form['image']);
+        unset($form['book_ids']);
       
         $talent->fill($form)->save();
+        BooksTalents::where('talent_id', $request->id)->delete();
 
+        foreach ($book_ids as $book_id) {
+            $books_talents = new BooksTalents;
+            $books_talents->book_id = $book_id;
+            $books_talents->talent_id = $talent->id;
+            $books_talents->save();
+        }
   
         return redirect('admin/talents');
     }
