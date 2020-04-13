@@ -1,0 +1,273 @@
+
+/* ============================================================ header */
+
+.base-header {
+  position: relative;
+  padding-top: 6px;
+  background-color: #fff;
+  overflow: hidden;
+}
+.base-header:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 6px;
+  content: '';
+  background: #ffed1b;
+  z-index: 1000;
+}
+.mod-header {
+}
+.mod-header a {
+  color: #000;
+}
+.mod-header__inner {
+  padding: 9px 20px 8px;
+  border-bottom: 1px solid #000;
+}
+.mod-header__inner:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.mod-header__logo {
+  float: left;
+  margin: 5px 0;
+  font-size: 100%;
+  line-height: 1;
+}
+.mod-header__logo img {
+  display: block;
+  width: 50px;
+  height: auto;
+}
+.mod-header__sub {
+  float: right;
+}
+.mod-header__sub:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.mod-header__button {
+  float: left;
+  font-size: 10px;
+  width: 90px;
+  height: 22px;
+  margin-right: 10px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  text-align: center;
+  line-height: 18px;
+  border: 2px solid #efefef;
+}
+.mod-header__navi {
+  list-style: none;
+  float: left;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-weight: normal;
+  font-family: 'TP Mincho StdN High B', '游明朝', YuMincho, 'Hiragino Mincho ProN', Meiryo, serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.mod-header__naviItem {
+  float: left;
+  margin: 0 5px;
+  line-height: 22px;
+}
+.mod-header__search {
+  float: left;
+  margin-left: 10px;
+  font-size: 16px;
+  line-height: 22px;
+  cursor: pointer;
+  position: relative;
+}
+.mod-header__search i {
+  vertical-align: middle;
+}
+
+.mod-hSearch {
+  display: none;
+  padding: 20px;
+  position: relative;
+  background-color: #fffffa;
+  border-top: 1px solid #000;
+  border-bottom: 2px solid #000;
+}
+.mod-hSearch:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.mod-hSearch.opened {
+  display: block;
+}
+.mod-hSearch.opened:before {
+  content: '';
+  width: 16px;
+  height: 2px;
+  background-color: #f9e900;
+  position: absolute;
+  top: -2px;
+  right: 20px;
+}
+.mod-hSearch.type-footer {
+  display: block;
+  border: none;
+  color: inherit;
+  background-color: #fff;
+}
+.mod-hSearch__inputArea {
+  overflow: hidden;
+  border: 1px solid #cbcbcb;
+}
+.mod-hSearch__input {
+  display: block;
+  width: 100%;
+  height: 28px;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1;
+  border: 0;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.mod-hSearch__button {
+  float: right;
+  background-color: #000;
+  color: #fff;
+  margin: 0 0 0 9px;
+  padding: 0;
+  border: 0;
+  font-size: 12px;
+  width: 45px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+.mod-hSearch__menu {
+  list-style: none;
+  clear: both;
+  float: none;
+  font-weight: normal;
+  font-family: 'TP Mincho StdN High B', '游明朝', YuMincho, 'Hiragino Mincho ProN', Meiryo, serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 12px;
+  line-height: 1;
+  /*padding: 15px 0 0 0; 20160708 代わりに↓.mod-hSearch__menuItem にmargin追加 */
+  margin: 0;
+}
+.mod-hSearch__menu:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.mod-hSearch__menuItem {
+  float: left;
+  /*margin-left: 20px;*/
+	margin-right: 20px;
+	margin-top:18px;/* 20160708 .mod-hSearch__menuのpaddingの代わりに追加 */
+}
+  .mod-hSearch__menu .mod-hSearch__menuItem:last-child{
+		margin-right:0;
+	}
+.mod-hSearch__menuItem a {
+  display: block;
+  position: relative;
+}
+
+.mod-globalnavi {
+  border-bottom: 1px solid #000;
+  background-color: #fff;
+}
+.mod-globalnavi__navi {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+  font-weight: normal;
+  font-family: 'TP Mincho StdN High B', '游明朝', YuMincho, 'Hiragino Mincho ProN', Meiryo, serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.mod-globalnavi__navi:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.mod-globalnavi__naviItem {
+  display: table;
+  font-size: 8px;
+  line-height: 1;
+  float: left;
+  width: 33.3%;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.mod-globalnavi__naviItem:not(:first-child) {
+  border-left: 1px solid #000;
+}
+.mod-globalnavi__naviItem b {
+  position: relative;
+  display: block;
+  font-size: 14px;
+  /*margin-top: 5px;*/ margin-bottom:5px;
+}
+
+.mod-globalnavi a {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  height: 62px;
+}
+.mod-globalnavi__navi2, .mod-globalnavi__navi3 {
+  list-style: none;
+  font-size: 12px;
+  margin: 20px 0;
+  padding: 0 20px;
+  overflow: hidden;
+  font-weight: normal;
+  font-family: 'TP Mincho StdN High B', '游明朝', YuMincho, 'Hiragino Mincho ProN', Meiryo, serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.mod-globalnavi__navi2Item, .mod-globalnavi__navi3Item {
+  float: left;
+  margin: 0 10px;
+  line-height: 20px;
+}
+.mod-globalnavi__navi2Item a, .mod-globalnavi__navi3Item a {
+  height: auto;
+}
+.mod-globalnavi.type-footer .mod-globalnavi__navi {
+  clear: both;
+  border-top: 1px solid #000;
+}
+.mod-globalnavi.type-footer .mod-globalnavi__navi2 {
+  float: right;
+  padding-left: 0;
+  padding-right: 10px;
+  margin-top: 0;
+}
+.mod-globalnavi.type-footer .mod-globalnavi__navi3 {
+  float: left;
+  padding-right: 0;
+  padding-left: 10px;
+  margin-top: 0;
+}
+.mod-globalnavi.type-footer .mod-globalnavi__navi2Item a, .mod-globalnavi.type-footer .mod-globalnavi__navi3Item a {
+  display: inline-block;
+}
+
+.mod-globalnavi.type-footer a {
+  color: inherit;
+}
