@@ -81,11 +81,12 @@ class TalentsController extends Controller
         $books = Book::all();
         $talent = Talent::find($request->id);
         if (empty($talent)) {
-          abort(404);    
+          abort(404);
         }
         $books_select = [];
         foreach($books as $book) {
             $books_select[$book->id]['book'] = $book;
+            $books_select[$book->id]['selected'] = false;
             foreach($talent->books as $talent_book) {
                 if ($book->id == $talent_book->id) {
                     $books_select[$book->id]['selected'] = true;
