@@ -12,11 +12,14 @@
 */
 
 Route::get('/', 'TopPageController@index');
+Route::get('/books', 'BooksController@index');
+Route::get('/book', 'BooksController@show');
+Route::get('/authors', 'AuthorsController@index');
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {

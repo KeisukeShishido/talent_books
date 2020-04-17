@@ -12,12 +12,14 @@
                 {{ $talent->name }}
             </div>
             <div style="margin-bottom: 8px;">
-                <span style="font-size: 3.8vw;">{{ $talent->description }}</span>
+                <span class="top-description">{{ $talent->description }}</span>
             </div>
             <div style="margin-bottom: 20px;">
                 <div style="font-weight: bold;">読んでいる本</div>
                     @foreach($talent->books as $book)
-                        <span style="font-size: 12px; font-color:lightskyblue; margin-right: 4px;">{{ $book->title }}</span>
+                        <span style="font-size: 12px; font-color:lightskyblue; margin-right: 4px;">
+                            <a href="/book?id={{$book->id }}">{{ $book->title }}</a>
+                        </span>
                     @endforeach
             </div>
         </div>

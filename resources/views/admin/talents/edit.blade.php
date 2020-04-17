@@ -56,4 +56,9 @@
             </div>
         </div>
     </div>
+    <script>
+    jQuery(function($){
+        $(".js-attachSelect2").select2();
+    });
+    </script>
 @endsection
