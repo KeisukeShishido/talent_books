@@ -35,7 +35,7 @@
       <nav class="mod-globalnavi">
         <ul class="mod-globalnavi__navi">
           <li class="mod-globalnavi__naviItem">
-            <a href="/tarents/">
+            <a href="/">
               <b>タレント
               </b>
               <span class="dsp_ib">一覧を見る

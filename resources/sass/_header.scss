@@ -6,6 +6,9 @@
   padding-top: 6px;
   background-color: #fff;
   overflow: hidden;
+  a {
+    text-decoration: none;
+  }
 }
 .base-header:before {
   position: absolute;

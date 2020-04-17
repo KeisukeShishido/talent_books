@@ -1,4 +1,8 @@
+@extends('layouts.admin')
 
+@section('title', '著者の一覧')
+
+@section('content')
     <div class="container">
         <div class="row">
             <h2>著者の一覧</h2>
@@ -47,3 +51,4 @@
             </div>
         </div>
     </div>
+@endsection

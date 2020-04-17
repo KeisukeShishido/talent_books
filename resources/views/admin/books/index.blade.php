@@ -1,4 +1,8 @@
+@extends('layouts.admin')
 
+@section('title', '本の一覧')
+
+@section('content')
     <div class="container">
         <div class="row">
             <h2>本の一覧</h2>
@@ -17,8 +21,8 @@
                                 <th width="5%">ID</th>
                                 <th width="10%">タイトル</th>
                                 <th width="10%">著者</th>
-                                <th width="5%">説明文</th>
-                                <th width="50%">タレント</th>
+                                <th width="40%">説明文</th>
+                                <th width="15%">タレント</th>
                                 <th width="20%">操作</th>
                             </tr>
                         </thead>
@@ -55,3 +59,4 @@
             </div>
         </div>
     </div>
+    @endsection

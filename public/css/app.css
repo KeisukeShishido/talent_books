@@ -10891,6 +10891,10 @@ a.text-dark:focus {
   overflow: hidden;
 }
 
+.base-header a {
+  text-decoration: none;
+}
+
 .base-header:before {
   position: absolute;
   top: 0;
@@ -11197,6 +11201,10 @@ a.text-dark:focus {
     border-radius: 50%;
     margin: 16px;
   }
+
+  .top-description {
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -11205,6 +11213,10 @@ a.text-dark:focus {
     width: 80px;
     border-radius: 50%;
     margin: 8px;
+  }
+
+  .top-description {
+    font-size: 3.8vw;
   }
 }
 
